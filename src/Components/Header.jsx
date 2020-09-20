@@ -14,7 +14,7 @@ class Header extends Component {
             <span style={{marginLeft:"150px"}}> For the Movie Enthusiast!! </span>
             <FontAwesomeIcon icon={faFilm} style={{marginLeft:"150px"}} />
             <span style={{marginLeft:"150px"}}> 
-              <a> Home  </a> 
+              Home
               Favorites
               Upcoming Movies
               Search

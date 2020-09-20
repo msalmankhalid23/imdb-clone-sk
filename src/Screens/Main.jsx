@@ -11,7 +11,6 @@ class Main extends Component {
   componentDidMount() {
     axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=ce478a7a8196b454dea3f69abb098638&language=en-US&page=1`)
       .then(res => {
-        {console.log(res.data.results)}
         this.customDataParsing(res.data.results)
       })
   }
