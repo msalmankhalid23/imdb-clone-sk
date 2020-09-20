@@ -36,3 +36,15 @@
     transform: rotate(360deg);
   }
 }
+
+.BackgroundArea
+{
+    background-color:#d9d9d9;
+    height: 500px;
+}
+.CenterAlignDiv
+{
+    width: 95%;
+    margin: 0 auto;
+}
+
