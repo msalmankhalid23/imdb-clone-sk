@@ -32,7 +32,7 @@ class Filters extends Component {
                 {
                     Filters_Data.map((key, index) => {
                         let label = Object.keys(key)
-                        let fitlerValues = Object.values(key).flat()
+                        let fitlerValues = Object.values(label).flat()
 
                         return (
                             <span key={label}>

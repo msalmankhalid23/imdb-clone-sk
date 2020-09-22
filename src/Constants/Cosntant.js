@@ -7,9 +7,9 @@ export const Filters_Data = [
 ]
 
 export const Filters_Display_Fields = 
-    {"genre":"Genere",
-    "releaseDate":"Release Date",
-    "rating":"Ratings",
-    "sortBy":"Sort By",
-    "language":"Language"}
+    {"genre":"Genere:",
+    "releaseDate":"Release Date:",
+    "rating":"Ratings:",
+    "sortBy":"Sort By:",
+    "language":"Language:"}
 
