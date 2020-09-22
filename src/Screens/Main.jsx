@@ -22,7 +22,7 @@ class Main extends Component {
       let movie = {
         id:element.id,
         popularity:element.popularity,
-        language:element.original_language,
+        language:this.populateLanguageFullName(element.original_language),
         title:element.title,
         overview:element.overview,
         releaseDate:element.release_date,
@@ -33,6 +33,23 @@ class Main extends Component {
     });
 
     this.setState({movies:movieData})
+  }
+
+  populateLanguageFullName(language)
+  {
+      if(language === "en")
+      {
+        return "English"
+      }
+      else if (language === "ko")
+      {
+        return "Korean"
+      }
+      else if (language === "es")
+      {
+        return "Spanish"
+      }
+       return language
   }
 
     render()

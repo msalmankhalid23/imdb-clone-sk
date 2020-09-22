@@ -11,13 +11,11 @@ class MovieDetail extends Component {
     }
 
     componentDidMount() {
-        console.log("Detail Mount")
         //get movies id dynamically
         const moviesId = this.props.match.params.id
         let url = `https://api.themoviedb.org/3/movie/${moviesId}?api_key=ce478a7a8196b454dea3f69abb098638&language=en-US`
         axios.get(url)
             .then(res => {
-                console.log(res.data, "Details Response")
                 this.customDataParsing(res.data)
             }
             )
@@ -30,7 +28,7 @@ class MovieDetail extends Component {
         let detail = {
             id: data.id,
             popularity: data.popularity,
-            language: data.original_language,
+            language: this.populateLanguageFullName(data.original_language),
             title: data.title,
             overview: data.overview,
             releaseDate: data.release_date,
@@ -41,12 +39,27 @@ class MovieDetail extends Component {
 
         this.setState({ movieDetail: detail })
     }
+    populateLanguageFullName(language)
+    {
+        if(language === "en")
+        {
+          return "English"
+        }
+        else if (language === "ko")
+        {
+          return "Korean"
+        }
+        else if (language === "es")
+        {
+          return "Spanish"
+        }
+         return language
+    }
 
     render() {
         return (
             <div className="BackgroundArea">
                 <div className="CenterAlignDiv">
-                    {console.log(this.state.movieDetail, "Movie Detail")}
                     <div className="ImageArea">
                         <img
                             src={`http://image.tmdb.org/t/p/w185/${this.state.movieDetail.imagePath}`}

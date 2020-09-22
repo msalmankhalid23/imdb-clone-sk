@@ -17,7 +17,6 @@ class Reviews extends Component {
         let url = `https://api.themoviedb.org/3/movie/${moviesId}/reviews?api_key=ce478a7a8196b454dea3f69abb098638&language=en-US`
         axios.get(url)
             .then(res => {
-                console.log(res.data, "Reviews Response")
                 this.setState({MovieReview:res.data.results})
                 //this.customDataParsing(res.data)
             }
@@ -55,7 +54,6 @@ class Reviews extends Component {
         return (
            <div className="BackgroundArea">
               <div className="CenterAlignDiv">
-                 {console.log(this.state.MovieReview,"check")}
                  {
                  
                  this.state.MovieReview && this.state.MovieReview.length > 0? 
