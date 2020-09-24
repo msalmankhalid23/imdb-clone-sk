@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import DropDown from './DropDown'
-import TextField from './TextField'
-import { Filters_Data, Filters_Display_Fields } from '../Constants/Cosntant'
+import {DropDown, TextField} from '../../shared'
+
+import { Filters_Data, Filters_Display_Fields } from '../../Constants/Cosntant'
 class Filters extends Component {
 
     constructor(props) {
@@ -31,9 +31,9 @@ class Filters extends Component {
                 <TextField title="List Filtering:" placeholder="Title Search" />
                 {
                     Filters_Data.map((key, index) => {
+                        
                         let label = Object.keys(key)
-                        let fitlerValues = Object.values(label).flat()
-
+                        let fitlerValues = Object.values(key).flat()
                         return (
                             <span key={label}>
                                 { index === 1 ? <p></p> : ""}

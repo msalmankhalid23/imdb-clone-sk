@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import Movie from '../Components/Movie'
+import {Movie} from '../../components'
 import axios from 'axios'
 
 class Main extends Component {

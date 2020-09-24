@@ -5,14 +5,11 @@ import {
   Route
 } from "react-router-dom";
 import './App.css';
-import MovieDetail from './Components/MovieDetail';
-import Home from './Screens/Home'
-import Header from './Components/Header'
-import Reviews from './Components/Reviews'
+import {MovieDetail, Header, Reviews} from './components'
+import {Home} from './pages/'
 class App extends Component {
   render() {
     return (
-
       <Router>
         <Header />
         <Switch>
