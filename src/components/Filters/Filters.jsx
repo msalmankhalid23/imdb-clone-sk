@@ -48,7 +48,7 @@ class Filters extends Component {
                     })
                 }
                 {
-                //console.log("Genre", this.state.genre, "Release", this.state.release)
+                console.log("Genre", this.state.genre, "Release", this.state.release)
                 }
             </div>
         )
