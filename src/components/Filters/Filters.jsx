@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {DropDown, TextField} from '../../shared'
-
+import styles from './filters.module.css'
 import { Filters_Data, Filters_Display_Fields } from '../../Constants/Cosntant'
 class Filters extends Component {
 
@@ -27,7 +27,7 @@ class Filters extends Component {
 
     render() {
         return (
-            <div style={{ backgroundColor: "yellow", height: "70px", padding: "0 0 2px 10px" }}>
+            <div className={styles.container}>
                 <TextField title="List Filtering:" placeholder="Title Search" />
                 {
                     Filters_Data.map((key, index) => {

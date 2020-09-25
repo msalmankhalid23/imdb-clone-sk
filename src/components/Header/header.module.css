@@ -1,0 +1,21 @@
+.container
+{
+    background-color: #5e5e5e;
+    height: 40px;
+    color: white;
+    padding-top: 10px;
+}
+.centerAlign
+{
+    width: 95%;
+    margin: 0 auto;
+}
+.linkNoFormatting
+{
+    text-decoration: none;
+    color: white;
+}
+.spaceBetweenIcons
+{
+    margin-left: 150px;
+}

@@ -2,19 +2,17 @@ import React, { Component } from 'react';
 
 import {Filters} from '../../components'
 import {Main} from '../'
+import style from './home.module.css'
 
 class Home extends Component {
     render() {
         return (
-            <div className="CenterAlignDiv">
-                <p style={{textAlign:"center"}}>All Movies
+            <div className={style.centerAlign}>
+                <p className={style.labelAllMovies} >All Movies
                 <label 
-                style={{
-                    backgroundColor:"#1ca325", 
-                    borderRadius:"10px", 
-                    marginLeft:"5px"
-                    }}>
-                    20
+                className={style.labelMoviesCount}
+                >
+                     20 
                     </label>
                 </p>
                 <Filters />

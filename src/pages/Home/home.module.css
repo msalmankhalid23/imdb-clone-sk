@@ -1,0 +1,22 @@
+.container
+{
+    background-color:#d9d9d9;
+    height: 500px;
+}
+
+.centerAlign
+{
+    width: 95%;
+    margin: 0 auto;
+    padding-top: 20px;
+}
+.labelAllMovies
+{
+    text-align: center;
+}
+.labelMoviesCount
+{
+    background-color: #1ca325;
+    border-radius: 10px;
+    margin-left: 5px;
+}

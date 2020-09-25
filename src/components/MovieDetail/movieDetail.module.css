@@ -1,31 +1,53 @@
-.Spacing
+.container
+{
+    background-color:#d9d9d9;
+    height: 500px;
+}
+.centerAlign
+{
+    width: 95%;
+    margin: 0 auto;
+}
+
+.spacing
 {
     margin-bottom: 3px;
 }
-.ImageArea
+.imageArea
 {
     margin-top: 45px;
     position: absolute;
 }
 
-.TextArea
+.textArea
 {
     width: 80%;
     margin-left: 20px;
     position: absolute;
     margin-left: 220px;
 }
+.title
+{
+    font-weight: bold;
+    font-size: 18px;
+}
 
-.WhiteHighlight
+.linkStyling
+{
+    text-decoration:  none;
+    color: blue;
+}
+
+.highlightWhite
 {
     background-color: white;
 }
-.DarkGrayHighlight
+.highlightDarkGray
 {
     background-color: #bab6b6;
 }
 
-.ShowReviewsButton
+.showReviewsButton
 {
     margin-top: 380px;
     width: 100%;

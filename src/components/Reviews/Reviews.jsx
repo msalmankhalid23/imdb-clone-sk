@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
 import axios from 'axios'
-import  './Reviews.css'
+import  style from './reviews.module.css'
 
 class Reviews extends Component {
     constructor(props) {
@@ -18,7 +18,6 @@ class Reviews extends Component {
         axios.get(url)
             .then(res => {
                 this.setState({MovieReview:res.data.results})
-                //this.customDataParsing(res.data)
             }
             )
             .catch()
@@ -41,7 +40,7 @@ class Reviews extends Component {
               <tr key={id}>
                  <td>{author}</td>
                  <td 
-                 className="MultilineLabel-td">
+                 className={style.multilineLabelTd}>
                     {content}
                     </td>
                  <td><a href={url} >Full Review </a></td>
@@ -52,18 +51,18 @@ class Reviews extends Component {
   
      render() {
         return (
-           <div className="BackgroundArea">
-              <div className="CenterAlignDiv">
+           <div className={style.container}>
+              <div className={style.centerAlign}>
                  {
                  
                  this.state.MovieReview && this.state.MovieReview.length > 0? 
-              <table id='movies' className="TableStyling">
+              <table id='movies' className={style.tableStyling}>
                  <tbody>
                     <tr>{this.renderTableHeader()}</tr>
                     {this.renderTableData()}
                  </tbody>
               </table>
-              : <div className="NoReviewsFound"> No reviews Found </div>
+              : <div className={style.noReviewsFound}> No reviews Found </div>
      }
            </div>
            </div>

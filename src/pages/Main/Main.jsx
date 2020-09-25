@@ -1,6 +1,7 @@
 import React,{Component} from 'react';
 import {Movie} from '../../components'
 import axios from 'axios'
+import style from './main.module.css'
 
 class Main extends Component {
 
@@ -55,7 +56,7 @@ class Main extends Component {
     render()
     {
       return (
-        <div style={{ backgroundColor:"#0098ad", minHeight:"100px", overflow:"hidden" }}>
+        <div className={style.container}>
           
             {this.state.movies.map(m => {
               return  <Movie key={m.id} movie={m} />

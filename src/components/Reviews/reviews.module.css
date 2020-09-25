@@ -1,4 +1,9 @@
-.MultilineLabel-td {
+.container
+{
+    background-color:#d9d9d9;
+    height: 500px;
+}
+.multilineLabelTd {
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 2;
@@ -9,21 +14,21 @@
     margin: 10px 0 10px 0;
   }
 
-  .TableStyling
+.tableStyling
   {
       border-collapse: collapse;
       background-color: #e0e3e6;
       text-align: center;
   }
 
-  .CenterAlignDiv
+  .centerAlign
 {
     width: 95%;
     margin: 0 auto;
     padding-top: 20px;
 }
 
-.NoReviewsFound
+.noReviewsFound
 {
     font-weight: bold;
     font-size: 26px;

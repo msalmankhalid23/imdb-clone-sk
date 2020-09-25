@@ -2,18 +2,13 @@ import React, { Component } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFilm, faStar } from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom'
+import styles from './movie.module.css'
 
 class Movie extends Component {
   render() {
     return (
 
-      <div style={{ 
-        backgroundColor: "#ebebeb", 
-        float: "left", 
-        margin: "0 10px 10px 10px", 
-        width:"210px", 
-        height:"360px", 
-        paddingLeft:"26px"}}>
+      <div className={styles.container}>
         
         <Link
           to={`/details/${this.props.movie.id}`}
@@ -24,7 +19,7 @@ class Movie extends Component {
             width="190"
           />
         </Link>
-        <div style={{ textAlign: "center", width:"200px" }}>
+        <div className={styles.title}>
           {this.props.movie.title}
           </div>
         <div>
