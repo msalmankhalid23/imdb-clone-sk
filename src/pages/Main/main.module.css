@@ -4,3 +4,22 @@
     min-height: 100px;
     overflow: hidden;
 }
+
+.labelAllMovies
+{
+    text-align: center;
+}
+.labelMoviesCount
+{
+    background-color: #1ca325;
+    margin-left: 5px;
+}
+
+.nextPrevButtonDiv
+{
+    text-align: center;
+    word-spacing: 100px;
+}
+.nextPrevButtonDiv button,span{
+    margin-right: 10px;
+}

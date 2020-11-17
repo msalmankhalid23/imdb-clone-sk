@@ -2,32 +2,51 @@ import React,{createContext,useReducer} from 'react'
 import FiltersReducer from './FiltersReducer'
 import {FILTER_SELECTED} from '../Constants/Cosntant'
 
-export const Filters_Data = [
-    {"genre":["Comedy","Horror","Romance","Fiction"]},
-    {"releaseDate":["All","Year"]},
-    {"rating":["All","Name"]},
-    {"sortBy":["All","Year"]},
-    {"language":["All","English","Spanish"]}
-]
+
+const ratingsList = () => {
+    let ratings = ['All'];
+    for (let i = 1; i <= 10; i++) {
+        ratings.push(""+i)
+    }
+    return `"rating":${JSON.stringify(ratings)}`;
+}
+
+const yearList = () => {
+    let years = ['All'];
+    let maxYear = 2020
+    for (let i = 0; i < 12; i++) {
+        years.push(""+maxYear)
+        maxYear -= 1
+    }
+    return `"releaseDate":${JSON.stringify(years)}`;
+}
+
+export const makeFiltersJson = () => {
+    let filtersString = `[{"genres":["All"]},
+    {${yearList()}},
+    {${ratingsList()}},
+    {"sortBy":["Popularity","Release Date","Top Rated"]},
+    {"language":["English","French","German","Spanish"]}]`
+    return JSON.parse(filtersString)
+}
+export const Filters_Data = makeFiltersJson()
 
 export const Filters_Display_Fields = 
-    {"genre":"Genere:",
-    "releaseDate":"Release Date:",
+    {"genres":"Genres:",
+    "releaseDate":"Release Year:",
     "rating":"Ratings:",
     "sortBy":"Sort By:",
     "language":"Language:"
 }
 
-
-
 const initialState ={
     filters : {
-        genre: "Comedy",
+        genres: "All",
         releaseDate: "All",
         rating: "All",
-        sortBy: "All",
-        language: "All",
-        titleSearch:"Title Search"
+        sortBy: "Popularity",
+        language: "English",
+        titleSearch:""
     }
 }
 
@@ -43,7 +62,6 @@ export const FiltersProvider = ({children}) => {
             payload: {name,value}
         });
     }
-
     return (
         <FiltersContext.Provider
             value={{
@@ -54,5 +72,4 @@ export const FiltersProvider = ({children}) => {
             {children}
         </FiltersContext.Provider>
     )
-
 }

@@ -1,20 +1,27 @@
 import axios from 'axios';
-import { takeLatest, call, put, all, select, take, takeEvery } from 'redux-saga/effects';
+import { takeLatest, call, put, all, select} from 'redux-saga/effects';
 import * as constants from '../../Constants/Cosntant'
-import { saveAllMoviesToStore, saveChangeLanguage } from './Main.actions'
-import { getPopularMovies } from '../../Utils/apiUrls'
-import { getAllFavoriteMovies, getAllMovies } from '../Main/Main.selectors'
-import {getPageNumber} from '../Home/Home.selectors'
+import { saveAllMoviesToStore, saveChangeLanguage, savePopularMoviesToStore } from './Main.actions'
+import { sendRequestForPopularMovies, sendRequestForAllMovies } from '../../Utils/apiUrls'
+import {getGenreFiltersReferenceDataSelector} from '../Home/Home.selectors'
+import {getPageNumber} from '../Main/Main.selectors'
+
 // call side effects
 function getPopularMoviesAPI(param, pageNumber) {
     const { filters } = param.payload
-    let api = getPopularMovies(filters,pageNumber)
+    let api = sendRequestForPopularMovies(filters,pageNumber)
     //calling of tag function
     //getPopularMoviesTagFunction `${filtersParam}` 
-    console.log("Get All movies Saga called", api)
     return axios.get(api)
 }
 
+function getAllMoviesAPI(param, pageNumber, genresRefereneData) {
+    const { filters } = param.payload
+    let api = sendRequestForAllMovies(filters,pageNumber, genresRefereneData)
+    //calling of tag function
+    //getPopularMoviesTagFunction `${filtersParam}`     
+    return axios.get(api)
+}
 
 // transform response 
 function customDataParsing(data) {
@@ -32,42 +39,52 @@ function customDataParsing(data) {
     }))
 }
 
+
 // worker saga, call api and update data, then dispatch to store
 function* getAllMoviesSagaWorker(param) {
     try {
-        const pageNumber = yield select(getPageNumber)
-        console.log("Get All movies Saga called",pageNumber, param)
-
-        const popularMovies = yield call(getPopularMoviesAPI, param,pageNumber)
-        const parseResponse = yield call(customDataParsing, popularMovies.data.results)
-        // put is use to dispatch actions to reducer
-        yield put(saveAllMoviesToStore(parseResponse))
-        yield put(saveChangeLanguage(parseResponse))
-
+        const pageNumbers = yield select(getPageNumber)
+        const genresRefereneData = yield select(getGenreFiltersReferenceDataSelector)
+        if(param.appSection === constants.APP_SECTION_POPULAR_MOVIES || param.type === constants.GET_POPULAR_MOVIES)
+        {
+            yield call(handlePopularMoviesSectionSaga,param,pageNumbers.popularMovie,genresRefereneData)
+        }
+        else
+        {
+            yield call(handleAllMoviesSectionSaga,param,pageNumbers.allMovie,genresRefereneData)   
+        }
     } catch (err) {
         console.log(err)
     }
 }
 
-function* changeLanguageSagaWorker() {
-    try {
-        const favMovies = yield select(getAllFavoriteMovies)
-        const movies = yield select(getAllMovies)
-        console.log("saga worker", favMovies)
-        // put is use to dispatch actions to reducer
-        yield put(saveChangeLanguage(movies, favMovies))
-    } catch (err) {
-        console.log(err)
-    }
+function* handleAllMoviesSectionSaga(param,pageNumber,genresRefereneData)
+{
+    const allMovies = yield call(getAllMoviesAPI, param,pageNumber, genresRefereneData)
+    const {results,total_pages,total_results} = allMovies.data;
+    
+    const parseResponse = yield call(customDataParsing, results)
+    // put is use to dispatch actions to reducer
+    yield put(saveAllMoviesToStore(parseResponse,total_pages,total_results))
+    yield put(saveChangeLanguage(parseResponse))
+
+}
+function* handlePopularMoviesSectionSaga(param,pageNumber,genresRefereneData)
+{
+    const popularMovies = yield call(getPopularMoviesAPI, param,pageNumber, genresRefereneData)
+    const {results,total_pages,total_results} = popularMovies.data;
+    const parseResponse = yield call(customDataParsing,results)
+    // put is use to dispatch actions to reducer
+    yield put(savePopularMoviesToStore(parseResponse,total_pages,total_results))
 }
 
 export default function* moviesSaga() {
 
     // takeLatest is a watcher saga which listen to actions
     // other one is takeEvery
-    console.log("Movies Saga Called")
     yield all([
-        takeLatest(constants.GET_ALL_MOVIES, getAllMoviesSagaWorker), 
+        takeLatest(constants.GET_ALL_MOVIES, getAllMoviesSagaWorker),
+        takeLatest(constants.GET_POPULAR_MOVIES, getAllMoviesSagaWorker), 
         takeLatest(constants.INCREMENT_PAGE, getAllMoviesSagaWorker),
         takeLatest(constants.DECREMENT_PAGE, getAllMoviesSagaWorker)
     ]) 

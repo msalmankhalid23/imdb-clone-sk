@@ -4,3 +4,9 @@
     min-height: 440px;
     overflow: hidden;
 }
+.noFavoritesLabel
+{
+    font-size: 44px;
+    color: white;
+    text-align: center;
+}

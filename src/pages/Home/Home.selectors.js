@@ -1,14 +1,25 @@
 import { createSelector } from 'reselect'
 
-const getMovies = state => state.movies;
-export const getPageNumber = state => state.pageNumber;
+export const getAllMoviesTotalPages = state => state.allMovies.totalPagesAllMovies;
+export const getAllMoviesTotalCount = state => state.allMovies.totalMovies;
 
-export const getAllMovies = createSelector(
-   getMovies,
-   (movies) => {return movies}
+const getAllMovies = state => state.allMovies;
+export const getAllMoviesSelector = createSelector(
+   getAllMovies,
+   (allMovies) => {return allMovies.movies}
 )
 
+ const getFiltersReferenceData = state => state.referenceFiltersData? state.referenceFiltersData:'';
+ export const getGenreFiltersReferenceDataSelector = createSelector(
+   getFiltersReferenceData,
+   (refrencedata) => {
+      return refrencedata.genres
+   }
+ )
+
+ /*Page Numbers */
+export const getPageNumber = state => state.pageNumbers;
 export const getPageNumberSelecter = createSelector(
     getPageNumber,
-    (pageNumber) => {return pageNumber}
+    (pageNumbers) => {return pageNumbers.allMovie}
  )

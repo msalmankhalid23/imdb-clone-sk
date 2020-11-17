@@ -34,7 +34,7 @@
     font-size: 26px;
 }
 
-tr:nth-child(even) {
+.tableStyling tr:nth-child(even) {
     background-color: #cbcdce;
     padding-left: 10px;
 }

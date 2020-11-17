@@ -1,39 +1,40 @@
-import React, { Component } from 'react';
+import React, { useContext } from 'react';
 import {DropDown, TextField} from '../../shared'
 import styles from './filters.module.css'
-import { Filters_Data, Filters_Display_Fields } from '../../Constants/Cosntant'
-class Filters extends Component {
+import {FiltersContext, Filters_Data, Filters_Display_Fields} from '../../context/FiltersState'
 
-    constructor(props) {
-        super(props)
-        this.state = {
-            genre: "Comedy",
-            release: "All",
-            ratings: "All",
-            sortBy: "All",
-            language: "All"
-        }
-        this.handleChange = this.handleChange.bind(this);
+const Filters = (props) => {
 
+    const {filters, filterSelected} = useContext(FiltersContext)
 
-    }
-
-    handleChange(event) {
+    const handleChange = (event) => {
         const { name, value } = event.target
-        console.log(event.target.name, "Event")
-        this.setState({ [name]: value })
-
+        filterSelected(name,value)
     }
-
-    render() {
+    
         return (
             <div className={styles.container}>
-                <TextField title="List Filtering:" placeholder="Title Search" />
+                <TextField 
+                title="Movie Title:" 
+                placeholder="Title Search" 
+                name="titleSearch"
+                handleChange={handleChange}
+                />
                 {
+                    
                     Filters_Data.map((key, index) => {
-                        
                         let label = Object.keys(key)
-                        let fitlerValues = Object.values(key).flat()
+                        let fitlerValues
+                        if(label && label[0] === 'genres')
+                        {
+                            fitlerValues = props.genres? props.genres.map( m => m.name): Object.values(key).flat()
+                            fitlerValues.unshift('All')
+                        }
+                        else
+                        {
+                            fitlerValues = Object.values(key).flat()
+                        }
+
                         return (
                             <span key={label}>
                                 { index === 1 ? <p></p> : ""}
@@ -42,17 +43,18 @@ class Filters extends Component {
                                     name={label}
                                     title={Filters_Display_Fields[label]}
                                     values={fitlerValues}
-                                    handleChange={this.handleChange} />
+                                    selectedValue = {filters[label]}
+                                    handleChange={handleChange} />
                             </span>
                         )
                     })
                 }
                 {
-                console.log("Genre", this.state.genre, "Release", this.state.release)
+               // console.log("Genre", filters.genre, "Release", filters.release)
                 }
             </div>
         )
-    }
+ 
 }
 
 export default Filters;

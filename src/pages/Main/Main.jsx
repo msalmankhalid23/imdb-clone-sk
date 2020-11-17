@@ -1,70 +1,51 @@
-import React,{Component} from 'react';
-import {Movie} from '../../components'
-import axios from 'axios'
+import React, { useEffect, useContext } from 'react';
+import { Movie } from '../../components'
 import style from './main.module.css'
+import { FiltersContext } from '../../context/FiltersState'
 
-class Main extends Component {
+const Main = (props) => {
+  const { getAllMovies, movies, addToFavorites,
+    loadNextPageMovies, loadPreviousPageMovies,
+    pageNumbers, appSection, totalPages,totalMovies } = props
 
-  state = {   
-    movies: []
+  const pageNumber = pageNumbers.allMovie
+  let { filters } = useContext(FiltersContext)
+
+  useEffect(() => {
+    getAllMovies(filters)
+  }, [filters,getAllMovies])
+
+  const handleAddToFavoriteClick = (event, props) => {
+    const { movie } = props
+    //set isFavorite to true
+    movie.isFavorite = true
+    addToFavorites(movie)
   }
 
-  componentDidMount() {
-    axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=ce478a7a8196b454dea3f69abb098638&language=en-US&page=1`)
-      .then(res => {
-        this.customDataParsing(res.data.results)
-      })
-  }
+  return (
+    <div className={style.container}>
 
-  customDataParsing(data)
-  {
-    let movieData = []
-    data.forEach(element => {
-      let movie = {
-        id:element.id,
-        popularity:element.popularity,
-        language:this.populateLanguageFullName(element.original_language),
-        title:element.title,
-        overview:element.overview,
-        releaseDate:element.release_date,
-        rating:element.vote_average,
-        imagePath: element.poster_path
-      }
-      movieData.push(movie)
-    });
+      <p>
+                <label className={style.sectionHeading}>
+                    All Movies:
+                </label>
+                <label
+                    className={style.labelMoviesCount}
+                >
+                    {movies.length*pageNumber}/{totalMovies}
+                </label>
+            </p>
 
-    this.setState({movies:movieData})
-  }
-
-  populateLanguageFullName(language)
-  {
-      if(language === "en")
-      {
-        return "English"
-      }
-      else if (language === "ko")
-      {
-        return "Korean"
-      }
-      else if (language === "es")
-      {
-        return "Spanish"
-      }
-       return language
-  }
-
-    render()
-    {
-      return (
-        <div className={style.container}>
-          
-            {this.state.movies.map(m => {
-              return  <Movie key={m.id} movie={m} />
-            })}
-       
+      {movies.map(m => {
+        return <Movie key={m.id} movie={m} handleClick={handleAddToFavoriteClick} isFavorite={m.isFavorite} />
+      })}
+      <div className={style.nextPrevButtonDiv}>
+        <button disabled={pageNumber <= 1 ? true : false} onClick={() => loadPreviousPageMovies(filters, appSection)}> Previous Page</button>
+        <span>{pageNumber}/{totalPages}</span>
+        <button disabled={pageNumber > totalPages ? true : false} onClick={() => loadNextPageMovies(filters, appSection)} > Next Page</button>
       </div>
-      )
-    }
-  }
-  
-  export default Main;
+    </div>
+  )
+}
+
+export default Main;

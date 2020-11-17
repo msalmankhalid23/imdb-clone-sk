@@ -10,12 +10,20 @@
     width: 95%;
     margin: 0 auto;
 }
-.linkNoFormatting
+.linkFormatting
 {
     text-decoration: none;
     color: white;
+    margin-left: 15px;
+}
+.linkFormatting:hover {
+    text-decoration: underline;
+    color: aquamarine;
+}
+.linkFormatting:focus {
+    color: yellowgreen;
 }
 .spaceBetweenIcons
 {
-    margin-left: 150px;
+    margin-left: 100px;
 }

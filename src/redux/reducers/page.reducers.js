@@ -1,14 +1,32 @@
 import * as constants from '../../Constants/Cosntant'
-const initialState = 1
+const initialState = { 'allMovie':1 , 'popularMovie':1 }
 
 const pageReducers =(state =initialState, actions) =>{
-    console.log("Movies:::::",state,actions)
     switch(actions.type){
-        // here we are filtering what type of action we want to process
         case constants.INCREMENT_PAGE:
-            return state+1
+            if(actions.appSection === constants.APP_SECTION_ALL_MOVIES)
+            {
+                return {
+                    ...state,
+                    allMovie: state.allMovie + 1
+                }
+            }
+            return {
+                ...state,
+                popularMovie: state.popularMovie + 1
+            }
             case constants.DECREMENT_PAGE:
-            return state>initialState? state-1 :initialState
+                if(actions.appSection === constants.APP_SECTION_ALL_MOVIES)
+                {
+                    return {
+                        ...state,
+                        allMovie: state.allMovie - 1
+                    }
+                }
+                return {
+                    ...state,
+                    popularMovie: state.popularMovie - 1
+                }
         default:
             return state;
     }

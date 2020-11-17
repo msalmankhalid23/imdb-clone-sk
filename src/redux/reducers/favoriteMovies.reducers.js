@@ -2,8 +2,6 @@ import {ADD_FAVORITE, REMOVE_FAVORITE, SAVE_CHANGE_LANGUAGE} from '../../Constan
 const initialState = []
 
 export default (state = initialState, action) => {
-    console.log("fav movie reducer::::",action)
-    
     switch (action.type) {
          case ADD_FAVORITE:
             return [

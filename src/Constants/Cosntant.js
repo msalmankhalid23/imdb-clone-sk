@@ -1,15 +1,22 @@
-export const Filters_Data = [
-    {"genre":["Comedy","Horror","Romance","Fiction"]},
-    {"releaseDate":["All","Year"]},
-    {"rating":["All","Name"]},
-    {"sortBy":["All","Year"]},
-    {"language":["All","English"]},
-]
 
-export const Filters_Display_Fields = 
-    {"genre":"Genere:",
-    "releaseDate":"Release Date:",
-    "rating":"Ratings:",
-    "sortBy":"Sort By:",
-    "language":"Language:"}
+export const FILTER_SELECTED = "FILTER_SELECTED"
+export const ADD_FAVORITE = "ADD_FAVORITE"
+export const REMOVE_FAVORITE = "REMOVE_FAVORITE"
 
+export const GET_ALL_MOVIES = 'GET_ALL_MOVIES';
+export const SAVE_ALL_MOVIES_STORE = 'SAVE_ALL_MOVIES_STORE'
+export const GET_POPULAR_MOVIES = 'GET_POPULAR_MOVIES';
+export const SAVE_ALL_POPULAR_MOVIES_STORE = 'SAVE_ALL_POPULAR_MOVIES_STORE'
+export const SAVE_FAVORITES_TO_STORE = 'SAVE_FAVORITES_TO_STORE'
+
+export const CHANGE_LANGUAGE = 'CHANGE_LANGUAGE';
+export const SAVE_CHANGE_LANGUAGE = 'SAVE_CHANGE_LANGUAGE';
+
+export const INCREMENT_PAGE = 'INCREMENT_PAGE';
+export const DECREMENT_PAGE = 'DECREMENT_PAGE';
+
+export const GET_ALL_GENRE = 'GET_ALL_GENRE';
+export const SAVE_GENRE_TO_STORE = 'SAVE_GENRE_TO_STORE';
+    
+export const APP_SECTION_ALL_MOVIES = 'ALL_MOVIES';
+export const APP_SECTION_POPULAR_MOVIES = 'POPULAR_MOVIES';

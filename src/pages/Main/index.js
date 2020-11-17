@@ -1,2 +1,2 @@
-import Main from './Main'
+import Main from './Main.container'
 export  default Main

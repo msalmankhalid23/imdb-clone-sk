@@ -1,16 +1,16 @@
 import {connect} from 'react-redux'
 import Home from './Home'
-import {loadNextPageMovies,loadPreviousPageMovies} from './Home.actions'
-import {getAllMovies,getPageNumberSelecter} from './Home.selectors'
+import {fetchGenreData} from './Home.actions'
+import {getAllMoviesSelector,getGenreFiltersReferenceDataSelector,getPageNumberSelecter} from './Home.selectors'
 
 const mapStateToProps = (state)=>({
-    movies: getAllMovies(state),
-    pageNumber:getPageNumberSelecter(state)
+    movies: getAllMoviesSelector(state),
+    genres:getGenreFiltersReferenceDataSelector(state),
+    pageNumber: getPageNumberSelecter(state)
 })
 
 const mapDispatchToProps = {   
-       loadNextPageMovies,
-        loadPreviousPageMovies
+    fetchGenreData
 }
 
 export default connect(mapStateToProps,mapDispatchToProps)(Home)

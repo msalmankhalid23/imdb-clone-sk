@@ -1,4 +1,6 @@
-import Home from './Home/index'
-import Main from './Main/index'
+import Home from './Home/'
+import Main from './Main/'
+import Favorites from './Favorites/'
+import PopularMovies from './Main/PopularMovies.container'
 
-export {Home, Main}
+export {Home, Main, Favorites,PopularMovies}

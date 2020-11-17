@@ -1,18 +1,15 @@
 import * as constants from '../../Constants/Cosntant'
-export const loadNextPageMovies = (filters) =>(
+
+
+export const fetchGenreData = () =>(
     {
-        type: constants.INCREMENT_PAGE,
-        payload:{
-            filters
-        }
+        type: constants.GET_ALL_GENRE,
+        payload:[]
     }
 )
-
-export const loadPreviousPageMovies = (filters) =>(
+export const saveGenreToStore = (genre) =>(
     {
-        type: constants.DECREMENT_PAGE,
-        payload:{
-            filters
-        }
+        type: constants.SAVE_GENRE_TO_STORE,
+        payload:genre
     }
 )
