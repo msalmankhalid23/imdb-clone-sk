@@ -9,7 +9,7 @@ class Header extends Component {
       return (
         <div className={styles.container}>
           <div className={styles.centerAlign}>
-            <Link to="/" className={styles.linkNoFormatting}> TMDB CLIENT </Link>
+            <Link to="/" className={styles.linkNoFormatting}> TMDB CLIENT (Developed By: Muhammad Salman Khalid) </Link>
             <FontAwesomeIcon icon={faVideo} style={{marginLeft:"190px"}} />
             <span className={styles.spaceBetweenIcons}> For the Movie Enthusiast!! </span>
             <FontAwesomeIcon icon={faFilm} style={{marginLeft:"150px"}} />
