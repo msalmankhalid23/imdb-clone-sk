@@ -1,23 +1,28 @@
+require('dotenv').config()
+
 export const baseUrl = 'https://api.themoviedb.org/3'
+const apiKey = process.env.REACT_APP_TMDB_APP_API_KEY;
 
 export const sendRequestForPopularMovies = (filters, pageNumber) => {
     
     const { language } = filters
-    return `${baseUrl}/movie/popular?api_key=ce478a7a8196b454dea3f69abb098638&language=${languageFilterValue(language)}&page=${pageNumber}`
+    return `${baseUrl}/movie/popular?api_key=${apiKey}&language=${languageFilterValue(language)}&page=${pageNumber}`
 }
 
 export const sendRequestForAllMovies = (filters, pageNumber, genresRefereneData) => {
+    
+    const apiKey1 = process.env.REACT_APP_TMDB_APP_API_KEY;
     const { language, genres, rating, releaseDate, sortBy, titleSearch } = filters
     if(titleSearch)
     {
-        return `${baseUrl}/search/movie?api_key=ce478a7a8196b454dea3f69abb098638&include_adult=false&page=${pageNumber}&year=${releaseDate?releaseDate:2020}&language=${languageFilterValue(language)}&query=${titleSearch}`
+        return `${baseUrl}/search/movie?api_key=${apiKey1}&include_adult=false&page=${pageNumber}&year=${releaseDate?releaseDate:2020}&language=${languageFilterValue(language)}&query=${titleSearch}`
     }
 
-    return `${baseUrl}/discover/movie?api_key=ce478a7a8196b454dea3f69abb098638&include_adult=false&include_video=false&page=${pageNumber}&year=${releaseDate?releaseDate:2020}&language=${languageFilterValue(language)}&sort_by=${sortByFilterValue(sortBy)}${genreFilterValue(genres,genresRefereneData)}${ratingUrlForApi(rating)}`
+    return `${baseUrl}/discover/movie?api_key=${apiKey1}&include_adult=false&include_video=false&page=${pageNumber}&year=${releaseDate?releaseDate:2020}&language=${languageFilterValue(language)}&sort_by=${sortByFilterValue(sortBy)}${genreFilterValue(genres,genresRefereneData)}${ratingUrlForApi(rating)}`
     }
 
 export const sendRequestForGenre = () => {
-    return `${baseUrl}/genre/movie/list?api_key=f943e554ba1b645ef5c4c35aed29f20f`
+    return `${baseUrl}/genre/movie/list?api_key=${apiKey}`
 }
 
 const sortByFilterValue = (sortBy) => {
@@ -72,6 +77,6 @@ const genreFilterValue = (genres, genresRefereneData) => {
 // first argument is array
 //2nd argument is the variable that is passed during function calling
 export const getPopularMoviesTagFunction = (arr, language) => {
-    return `${baseUrl}/movie/popular?api_key=ce478a7a8196b454dea3f69abb098638&language=${language}&page=1`
+    return `${baseUrl}/movie/popular?api_key=${apiKey}&language=${language}&page=1`
 }
 

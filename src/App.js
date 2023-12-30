@@ -9,7 +9,7 @@ import { MovieDetail, Header, Reviews } from './components'
 import { Home, Favorites } from './pages/'
 import { MovieProvider } from './context/MovieState'
 import {FiltersProvider} from './context/FiltersState'
-
+require('dotenv').config()
 
 const App = () => {
   return (

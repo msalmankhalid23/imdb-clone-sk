@@ -1,14 +1,24 @@
 .container
 {
-    background-color: #016bad;
-    height: 40px;
+    background-color: #000000;
+    
     color: white;
-    padding-top: 10px;
+    padding: 20px 0px 20px 0px;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bold;
 }
 .centerAlign
 {
-    width: 95%;
+    width: 100%;
     margin: 0 auto;
+    text-align: center;
+}
+.logo
+{
+    float: left;
+    text-decoration: none;
+    color: white;
+    margin-left: 50px;
 }
 .linkFormatting
 {
@@ -26,4 +36,20 @@
 .spaceBetweenIcons
 {
     margin-left: 100px;
+}
+
+.menuList
+{
+    margin-right: 80px;
+    float:right;    
+    display: block;
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+      }
+    li{
+        display: inline;
+    }    
 }

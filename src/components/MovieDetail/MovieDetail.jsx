@@ -4,7 +4,7 @@ import { faHome } from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import style from './movieDetail.module.css'
-
+const apiKey = process.env.TMDB_APP_API_KEY;
 const MovieDetail = (props) => {
     const [movieDetail, setMovideDetail] = useState({})
 
@@ -30,7 +30,7 @@ const MovieDetail = (props) => {
 
     useEffect(() => {
         
-        let url = `https://api.themoviedb.org/3/movie/${movieId}?api_key=ce478a7a8196b454dea3f69abb098638&language=en-US`
+        let url = `https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}&language=en-US`
         axios.get(url)
             .then(res => {
                 customDataParsing(res.data)

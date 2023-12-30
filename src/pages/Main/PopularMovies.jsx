@@ -32,9 +32,13 @@ const PopularMovies = (props) => {
                 return <Movie key={m.id} movie={m} />
             })}
             <div className={style.nextPrevButtonDiv}>
-                <button disabled={pageNumber <= 1 ? true : false} onClick={() => loadPreviousPageMovies(filters, appSection)}> Previous Page</button>
+                <button disabled={pageNumber <= 1 ? true : false} onClick={() => loadPreviousPageMovies(filters, appSection)}> {'<'} </button>
                 <span>{pageNumber}/{totalPages}</span>
-                <button onClick={() => loadNextPageMovies(filters, appSection)} > Next Page</button>
+                <button disabled={pageNumber > totalPages ? true : false} onClick={() => loadNextPageMovies(filters, appSection)} > {'>'}</button>
+
+                {/* <button disabled={pageNumber <= 1 ? true : false} onClick={() => loadPreviousPageMovies(filters, appSection)}> Previous Page</button>
+                <span>{pageNumber}/{totalPages}</span>
+                <button onClick={() => loadNextPageMovies(filters, appSection)} > Next Page</button> */}
             </div>
         </div>
     )

@@ -24,7 +24,6 @@ const Home = (props) => {
         <div className={style.centerAlign}>
             <Filters genres={props.genres} />
             <div>
-
                 <button id={1} className={allMoviesToggle ? style.collapseButton : style.expandButton} onClick={(event) => handleClick(event)} > All Movies</button>
                 <div ref={divRef} className={allMoviesToggle ? style.contentCollapse : style.contentExpand} >
                     <Main appSection={constants.APP_SECTION_ALL_MOVIES} />

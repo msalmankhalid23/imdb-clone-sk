@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios'
 import style from './reviews.module.css'
+const apiKey = process.env.TMDB_APP_API_KEY;
 
 const Reviews = (props) => {
 
@@ -9,7 +10,7 @@ const Reviews = (props) => {
    const moviesId = props.match.params.id
    useEffect(() => {
 
-      let url = `https://api.themoviedb.org/3/movie/${moviesId}/reviews?api_key=ce478a7a8196b454dea3f69abb098638&language=en-US`
+      let url = `https://api.themoviedb.org/3/movie/${moviesId}/reviews?api_key=${apiKey}&language=en-US`
       axios.get(url)
          .then(res => {
             setMovieReview(res.data.results)
